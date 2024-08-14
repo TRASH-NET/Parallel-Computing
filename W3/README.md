@@ -25,3 +25,20 @@ In this challenge, students will implement parallel image processing using threa
 - Efficient utilization of thread-shared memory for parallel image processing.
 - Analysis of speedup and efficiency achieved using multiple threads.
 - Discussion of memory sharing challenges and proposed solutions or optimizations.
+
+## Preguntas
+
+1. ¿Como calculo el numero de bytes de la imagen?
+2. ¿Por que la imagen nunca entra en el else? 
+```python
+else:
+        # ? La imagen ya está en escala de grises
+        grayscale_image = image
+        height, width = grayscale_image.shape
+        total_pixels = height * width
+        total_bytes = total_pixels
+        bytes_processed = total_bytes
+        start_time = time.time()
+        print(f"Bytes procesados: {bytes_processed}/{total_bytes}")
+        end_time = time.time()
+```
