@@ -1,0 +1,8 @@
+*.pdf
+
+*.docx
+
+*.xlsx
+
+# Ignorar el directorio venv
+venv/

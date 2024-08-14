@@ -1,0 +1,86 @@
+Optimización del proceso de matrícula académica en la Universidad Tecnológica de Bolívar
+Introducción:
+El proceso de matrícula académica en la Universidad Tecnológica de Bolívar tiene como principal componente el agendamiento de turnos de matrícula para los estudiantes. Este agendamiento se basa en ciertos factores internos del estudiante para determinar el día y la hora en que podrá inscribir sus cursos. Un correcto agendamiento es crucial para asegurar una experiencia fluida y satisfactoria para los estudiantes.
+
+Planteamiento del problema:
+Durante el proceso de inscripción, se presentan diversas fallas en los sistemas de la UTB que afectan negativamente la experiencia del estudiante. Estas fallas ocurren tanto al realizar consultas en Banner como al recibir respuestas del COME cuando se presenta algún inconveniente en la inscripción. El problema se debe principalmente a la saturación del servidor por el alto número de peticiones simultáneas realizadas por los estudiantes al intentar inscribir cursos o acceder a la plataforma Banner. Esto genera colas y provoca insatisfacción entre los estudiantes en un proceso que debería ser fluido y sencillo.
+
+Objetivos:
+El objetivo principal de la propuesta es reducir el número de estudiantes que matriculan por turno mediante la paralelización del proceso de matrícula. Esto se logrará distribuyendo a los estudiantes en más turnos y asignándoles turnos más frecuentes y cortos, mejorando así la eficiencia del sistema y la experiencia del estudiante.
+
+Datos:
+ ----- ----------------------- ------------------- -------------------------------
+|Grupo|Cantidad de estudiantes|	Turnos reasignados| % turnos reasignados por grupo|
+ ----- ----------------------- ------------------- -------------------------------
+|  1  |		3711	      |		69	  |		2%		  |
+ ----- ----------------------- ------------------- -------------------------------
+|  2  |		224	      |		35	  |		16% 		  |
+ ----- ----------------------- ------------------- -------------------------------
+|  3  |		431	      |		290 	  |		67%		  |
+ ----- ----------------------- ------------------- -------------------------------
+|  4  |		486	      |		399	  |		82%		  |	
+ ----- ----------------------- ------------------- -------------------------------
+|Total|		4852	      |	
+ ----- -----------------------	
+Tabla 1. Estadísticas de estudiantes con turnos asignados y turnos reasignados.
+
+Distribución de turnos:
+
+		   GRUPO 1
+Turno		Día			Hora Inicio	Hora Fin
+1	jueves, 18 de julio 2024	13:00		17:00
+2	viernes, 19 de julio 2024	8:00		12:00
+3	viernes, 19 de julio 2024	13:00		17:00
+4	lunes, 22 de julio 2024		8:00		12:00
+5	lunes, 22 de julio 2024		13:00		17:00
+6	martes, 23 de julio 2024	8:00		12:00
+7	martes, 23 de julio 2024	13:00		17:00
+8	miércoles, 24 de julio 2024	8:00		12:00
+9	miércoles, 24 de julio 2024	13:00		17:00
+Tabla 2. Distribución de turnos del primer grupo
+
+GRUPO 2
+Turno		Día			Hora Inicio	Hora Fin
+6	martes, 23 de julio 2024	8:00		12:00
+7	martes, 23 de julio 2024	13:00		17:00
+8	miércoles, 24 de julio 2024	8:00		12:00
+9	miércoles, 24 de julio 2024	13:00		17:00
+Tabla 3. Distribución de turnos del segundo grupo
+
+GRUPO 3
+Turno		Día			Hora Inicio	Hora Fin
+10	jueves, 25 de julio 2024	8:00		12:00
+Tabla 4. Distribución de turnos del tercer grupo
+
+GRUPO 4
+Turno			Día					Hora Inicio	Hora Fin
+13	viernes, 26 de julio - domingo 28 de julio 2024		8:00		12:00
+Tabla 5. Distribución de turnos del cuarto grupo
+
+Análisis:
+De acuerdo con los datos expuestos anteriormente, extraídos de la plataforma oficial “Banner” de la UTB del último proceso de matrícula académica para el periodo 2024-02, podemos realizar las siguientes afirmaciones:
+
+El Grupo 1 tiene el mayor volumen de estudiantes que matriculan, con una cantidad de 3711 estudiantes, y un 2% en el porcentaje de reasignación, con 69 estudiantes reasignados.
+Entre el Grupo 1 y el Grupo 2 se asignan el mayor número de turnos, con un total de 9.
+Los Grupos 3 y 4 tienen la mayor cantidad de turnos reasignados, con un total del 67% y 82% respectivamente.
+A partir de esta información, es posible extraer las siguientes conclusiones:
+
+Durante los primeros 9 turnos, que se desarrollan en los primeros 5 días, es donde existe la mayor probabilidad de que se generen fallas en el sistema por el volumen de estudiantes que matriculan durante este periodo de tiempo.
+Dado que el volumen de estudiantes en los Grupos 3 y 4 es el más bajo, y en su mayoría fueron turnos reasignados, los descartaremos en este análisis y en las soluciones propuestas posteriormente, y solo se tendrá en cuenta el volumen de estudiantes en los Grupos 1 y 2 durante los primeros 5 días que corresponden a los turnos de matrícula.
+
+Soluciones propuestas:
+ ---------------------------- --------------------------- ---------------------------------
+|        Estrategia          |		Descripción	 |	Ejemplo de Implementación  |
+ ---------------------------- --------------------------- ---------------------------------
+|Aumento del Número de Turnos|	Rediseñar turnos más     |   Turnos de horas en lugar de 4 |
+|			     |	frecuentes y cortos.	 |                                 | 
+ ---------------------------- --------------------------- ---------------------------------
+|Turnos Superpuestos	     | Implementar turnos con    | Turnos solapados para	   | 
+| 			     |  solapamientos calculados.| maximizar capacidad.            |
+ ---------------------------- --------------------------- ---------------------------------
+|Dar 2 turnos por estudiante |	Brindar la posibilidad de| Un turno en la mañana de 2 horas| 
+| para matricular	     |	que cada estudiante tenga| y otro en la tarde de 2 horas.  |	
+|			     |	2 turnos al día para     |				   |
+|			     |	matricular.		 | 			           |
+ ---------------------------- --------------------------- ---------------------------------
+Tabla 6. Soluciones propuestas con ejemplo de implementación.
