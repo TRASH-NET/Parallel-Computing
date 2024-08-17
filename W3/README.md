@@ -26,19 +26,42 @@ In this challenge, students will implement parallel image processing using threa
 - Analysis of speedup and efficiency achieved using multiple threads.
 - Discussion of memory sharing challenges and proposed solutions or optimizations.
 
-## Preguntas
+## Setup Instructions
 
-1. ¿Como calculo el numero de bytes de la imagen?
-2. ¿Por que la imagen nunca entra en el else? 
-```python
-else:
-        # ? La imagen ya está en escala de grises
-        grayscale_image = image
-        height, width = grayscale_image.shape
-        total_pixels = height * width
-        total_bytes = total_pixels
-        bytes_processed = total_bytes
-        start_time = time.time()
-        print(f"Bytes procesados: {bytes_processed}/{total_bytes}")
-        end_time = time.time()
-```
+To set up your environment and run the code, follow these steps:
+
+1. **Create a Virtual Environment**:
+
+   Open your terminal and navigate to the project directory. Run the following command to create a virtual environment:
+
+   ```bash
+   python -m venv env
+   ```
+2. **Activate the Virtual Environment**:
+
+   - On Windows, run:
+
+     ```bash
+     .\env\Scripts\activate
+     ```
+
+   - On macOS and Linux, run:
+
+     ```bash
+     source env/bin/activate
+     ```
+3. **Install the required libraries**:
+
+     ```bash
+        pip freeze > requirements.txt
+     ```
+     ```bash
+        pip install -r requirements.txt
+     ```
+4. **Run the Code**:
+
+   You can now run the Python script using the following command:
+
+   ```bash
+   python index.py
+   ```
