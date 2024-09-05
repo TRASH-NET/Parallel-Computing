@@ -28,3 +28,42 @@ In this challenge, students will implement parallel matrix multiplication using 
 - Efficient utilization of join() to synchronize the completion of all threads.
 - Analysis of speedup and efficiency achieved using multiple threads.
 - Discussion of the importance of using join() for proper thread synchronization.
+
+To set up your environment and run the code, follow these steps:
+
+1. **Create a Virtual Environment**:
+
+   Open your terminal and navigate to the project directory. Run the following command to create a virtual environment:
+
+   ```bash
+   python -m venv env
+   ```
+2. **Activate the Virtual Environment**:
+
+   - On Windows, run:
+
+     ```bash
+     .\env\Scripts\activate
+     ```
+
+   - On macOS and Linux, run:
+
+     ```bash
+     source env/bin/activate
+     ```
+3. **Install the required libraries**:
+
+     ```bash
+        pip install -r requirements.txt
+     ```
+4. **Install Quarto and Latex to generate the report**:
+    - **Quarto**: https://quarto.org/docs/get-started/
+    - **TinyTex**: https://yihui.org/tinytex/
+
+5. **Run the Code**:
+
+   You can now run the Python script using the following command:
+
+   ```bash
+   python index.py
+   ```
