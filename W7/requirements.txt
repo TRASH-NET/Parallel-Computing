@@ -1,0 +1,5 @@
+platform
+subprocess
+numpy
+matplotlib
+jupyter
