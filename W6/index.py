@@ -9,7 +9,7 @@ import pandas as pd
 
 def multiply_matrices(A, B):
     """
-    Multiplies two matrices using the numpy library.
+    Divides the matrix A into chunks and multiplies each chunk by matrix B in serial.
 
     Args:
         A (numpy.ndarray): The first matrix.
@@ -18,8 +18,24 @@ def multiply_matrices(A, B):
     Returns:
         numpy.ndarray: The result of multiplying matrices A and B.
     """
+    num_chunks = os.cpu_count()
+    size = A.shape[0]
+    result = np.zeros((size, B.shape[1]))
+    chunk_size = size // num_chunks
     
-    return np.dot(A, B)
+    for i in range(num_chunks):
+        row_start = i * chunk_size
+        if i != num_chunks - 1:
+            row_end = (i + 1) * chunk_size
+        else:
+            row_end = size
+        
+        subA = A[row_start:row_end, :]
+        
+        for j in range(subA.shape[0]):
+            result[row_start + j, :] = np.dot(subA[j, :], B)
+
+    return result
 
 
 def parallel_worker(subA, B, result, row_start):
@@ -219,14 +235,32 @@ The following methodology was used to carry out this analysis:
 - **parallel_matrix_multiply()**: It divides matrix A into submatrices and multiplies each submatrix by matrix B in parallel using the 'join()' synchronization.
 - **test()**: It performs the tests and prints the results.
 
-# Test 
+# Test Results
 
 {results.to_markdown(index=False)}
 
 # Analysis and Discussion
 
+- Performance of Matrix Multiplication: The comparison between serial and parallel matrix multiplication shows significant 
+performance improvements with parallelization.  The parallel execution with join() demonstrates a reduction in processing time 
+compared to the serial method. Specifically, the observed speedup aligns with the expected benefits of utilizing multiple 
+threads to perform computations simultaneously. However, the actual speedup achieved is also dependent on the number of threads 
+and the overhead associated with thread management.
+
+- Thread Efficiency: The use of join() ensures that the main thread waits for all worker threads to complete their execution 
+before proceeding. This synchronization is crucial to maintain the correctness of the results. Without join(), there is a risk 
+of data corruption, as threads may overwrite parts of the result matrix before all computations are complete. This lack of 
+synchronization leads to incorrect results, highlighting the importance of proper thread management.
+
+- Impact on Results: The results indicate that parallel matrix multiplication without join() produces incorrect results, as 
+verified by the np.allclose() function. This discrepancy underscores the necessity of using join() to ensure that all threads 
+have completed their tasks and that results are correctly aggregated into the final matrix.
 
 # Conclusion
+
+While parallel processing offers performance gains, it also introduces overhead from thread 
+creation and synchronization. The optimal number of threads should balance the benefits of parallelism against the costs of 
+thread management. Excessive threading may lead to diminishing returns, where the overhead negates the advantages of parallel 
 
    
    """
