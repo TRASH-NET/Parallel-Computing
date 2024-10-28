@@ -6,3 +6,5 @@
 
 # Ignorar el directorio venv
 venv/
+
+__pycache__/
